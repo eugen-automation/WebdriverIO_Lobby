@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "types": [
+            "node",
+            "@wdio/types",
+            "@wdio/globals/types",
+            "expect-webdriverio",
+            "@wdio/visual-service",
+            "@wdio/mocha-framework",
+            "@wdio/allure-reporter",
+        ],
+        "target": "ESNext",
+        "module": "ESNext",
+    },
+    "include": [
+        "test/**/*",
+    ],
+}

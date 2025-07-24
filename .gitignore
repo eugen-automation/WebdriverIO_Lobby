@@ -1,0 +1,7 @@
+node_modules
+tmp
+visualTests
+allure-report
+allure-results
+tmp
+.package-lock.json
