@@ -20,9 +20,6 @@ config.specs = [
 
 ];
 
-// config.hostname = '192.168.17.33';  // Appium server hostname
-// config.port=  4723; // Appium server port
-// config.path = '/wd/hub'; // Path to Appium server (when device-farm is started)
 
 
 // ============
@@ -33,21 +30,21 @@ config.capabilities = [
   /* web*/
   {
     browserName: 'chrome',
-    'goog:chromeOptions': {
-      args: ['--window-size=1366,768'],
-    }
+   'goog:chromeOptions': {
+            args: [
+                '--headless',
+                '--no-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+                '--window-size=1920,1080',
+                '--disable-web-security',
+                '--disable-features=VizDisplayCompositor',
+                '--remote-debugging-port=9222'
+            ]
+        }
   },
 
-  /* Realme with Chrome browser*/
-  // {
-  //   platformName: 'Android',
-  //   port: 4723,
-  //   'appium:deviceName': '9a0ad1b1',
-  //   'appium:platformVersion': '13.0',
-  //   'appium:automationName': 'UiAutomator2',
-  //   'appium:browserName': 'Chrome',  
-  //   'appium:noReset': true
-  // },
+ 
 
 ];
 
