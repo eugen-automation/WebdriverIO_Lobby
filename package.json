@@ -22,7 +22,7 @@
     "e": "dotenv -e .env.testing wdio ./test/capabilities/wdio.conf.eug.ts",
     "e:pp": "dotenv -e .env.staging wdio ./test/capabilities/wdio.conf.eug.ts",
     "e:headless": "dotenv -e .env.testing wdio ./test/capabilities/wdio.conf.headless.ts",
-    "e:docker": "docker build -t wdio-tests . && docker run --rm --env-file .env.testing wdio-tests",
+    "e:docker": "docker build -t wdio-tests . && docker run --rm wdio-tests",
     "update.packages": "npm i npm-check-updates && ncu -u && npm i",
     "allure": "allure generate allure-results --clean && allure open"
   }
