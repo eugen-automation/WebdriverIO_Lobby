@@ -5,9 +5,10 @@ import xml2js from 'xml2js'
 
 
 
-const secretKey2 = 'LC_20230712_R`^}H8a" $OJq=y';
+const secretKey2 = 'LC_20230712';
 let secretKey3: string;
 const secretKey = process.env.SERVICES_URL + secretKey2 + process.env.API_URL + secretKey3;
+
 
 
 
