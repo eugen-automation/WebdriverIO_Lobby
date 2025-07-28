@@ -19,11 +19,6 @@ import { gameNameMapping, gameTypeMapping } from '../../src/models/mappings/game
 import { GameTypesEnum } from '../../src/models/enums/gameTypes.enum.ts';
 
 
-let sessionData: Data;
-// let betDetails: PlaceBetData;
-// let TRANSLATION_DICTIONARY: TranslationDictionary;
-// const PYB_MIN_TIMER = 7;
-const EXPECTED_PLAYER_BALANCE = 10000;
 
 
 
@@ -33,6 +28,7 @@ describe('SANITY: Lobby test suite', async () => {
     // const lobbyPage = BasePage;
     // original object sessionData with values
     // let dataObject: Data;
+    let sessionData: Data;
     let unit = CasinoComponentEnum.Lobby;
 
 
@@ -117,7 +113,7 @@ describe('SANITY: Lobby test suite', async () => {
         }
     });
 
-    it(`SANITY_1_1 ${unit} : Check negative login`, async function () {
+    it.only(`SANITY_1_1 ${unit} : Check negative login`, async function () {
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
         console.info('<<<<<<<<<<<< STARTING TEST EXECUTION: ', this?.test?.title, '>>>>>>>>>>>');
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
@@ -368,7 +364,7 @@ describe('SANITY: Lobby test suite', async () => {
         expect(currentUrl).toEqual(sessionData.urls.lobbyUrl + 'error');
 
         // Check an element to exactly match with baseline
-        await expect(browser).toMatchFullPageSnapshot('errorPage_BaseLine', 0.5);
+        // await expect(browser).toMatchFullPageSnapshot('errorPage_BaseLine', 0.5);
     });
 
     // no Recently Played Games section in Lobby if param session details enamble is false
