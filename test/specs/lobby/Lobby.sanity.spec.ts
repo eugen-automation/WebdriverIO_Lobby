@@ -7,7 +7,6 @@ import allureReporter from '@wdio/allure-reporter';
 import assert from 'assert';
 
 import { adminGameParam } from '../../src/models/types/adminParam.ts';
-import { QAEnum } from '../../src/models/enums/qa.enum.ts';
 import { addArgumentsToAllure } from '../../src/utils/helpers/allureReporter.helper.ts';
 
 import LoginPage from '../../src/pageObjects/Lobby/pages/LoginPage.ts';
@@ -99,7 +98,7 @@ describe('SANITY: Lobby test suite', async () => {
 
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
+            
 
             await LoginPage.open(sessionData.urls.lobbyOhterUrl);
 
@@ -113,15 +112,15 @@ describe('SANITY: Lobby test suite', async () => {
         }
     });
 
-    it.only(`SANITY_1_1 ${unit} : Check negative login`, async function () {
+    it.only(`SANITY_1_1 ${unit} : negative login`, async function () {
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
         console.info('<<<<<<<<<<<< STARTING TEST EXECUTION: ', this?.test?.title, '>>>>>>>>>>>');
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
+            
 
-            await LoginPage.open(sessionData.urls.lobbyOhterUrl);
+            await LoginPage.open(sessionData.urls.lobbyUrl);
 
             await LoginPage.login('wrong_username', '');
 
@@ -140,8 +139,8 @@ describe('SANITY: Lobby test suite', async () => {
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
-            await LoginPage.open(sessionData.urls.lobbyOhterUrl);
+           
+            await LoginPage.open(sessionData.urls.lobbyUrl);
             await LoginPage.login(sessionData.player.name, sessionData.player.password);
 
             await allureReporter.step(`Check for successful login`, async () => {
@@ -161,7 +160,7 @@ describe('SANITY: Lobby test suite', async () => {
 
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
+           
             assert.ok(await ForYouPage.openLobbyByDirectLink(sessionData), 'Failed to open Lobby with direct link');
 
             allureReporter.step(`Check for successful login`, async () => {
@@ -183,7 +182,7 @@ describe('SANITY: Lobby test suite', async () => {
         const defaultCategoryGame = 'baccarat';
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
+           
 
             assert.ok(await ForYouPage.openLobbyByDirectLink(sessionData, { lobby: { defaultCategory: defaultCategoryGame } }), 'Failed to login');
 
@@ -253,7 +252,7 @@ describe('SANITY: Lobby test suite', async () => {
 
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
+           
 
             // login into lobby & open Top games
             assert.ok(await ForYouPage.openLobbyByDirectLink(sessionData), 'Failed to open Lobby with direct link');
@@ -313,7 +312,7 @@ describe('SANITY: Lobby test suite', async () => {
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
 
         try {
-            addArgumentsToAllure(QAEnum.Eugen);
+           
 
             // open lobby by direct link
             assert.ok(await ForYouPage.openLobbyByDirectLink(sessionData), 'Failed to open Lobby with direct link');

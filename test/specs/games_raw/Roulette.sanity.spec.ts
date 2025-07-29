@@ -1,5 +1,5 @@
 // import { gameStatusMap } from '../src/models/enums/gameStatus.enum.ts';
-import { deepClone } from '../../src/utils/helpers/generalLogic.helper.ts'
+// import { deepClone } from '../../src/utils/helpers/generalLogic.helper.ts'
 // import DragonTigerGamePo from '../pageObjects/games/DragonTiger.game.po.ts';
 // import allureReporter from '@wdio/allure-reporter';
 import { CasinoComponentEnum, GamesNamesEnum } from '../../src/models/enums/gameNames.enum.ts';
@@ -20,16 +20,17 @@ import { Prerequisite } from '../../src/utils/helpers/common.prerequisite.ts';
 // import WinningAnimationPo from '../../../src/pageObjects/components/WinningAnimation.comp.po.ts';
 // import { adminGameParam } from '../../src/models/types/adminParam.ts';
 // import notificationJSONData from '../../../src/JSON/games/notificationsDetails.data.json' assert { type: 'json' };
-import { QAEnum } from '../../src/models/enums/qa.enum.ts';
-import { BaccaratPage } from '../../src/pageObjects/LiveGames/BAC/BaccaratPage.ts';
-import { openModeType } from '../../src/models/enums/openModeTypes.enum.ts_toBeDeleted';
+
+// import { BaccaratPage } from '../../src/pageObjects/LiveGames/BAC/BaccaratPage.ts';
+
+import { RoulettePage } from '../../src/pageObjects/LiveGames/RO/RoulettePage.ts';
 
 
 
 
 // read from .env file the games to run tests on
 const gameName: GamesNamesEnum = Prerequisite.getListOfGamesToBeTested()[0];
-if (gameName !== GamesNamesEnum.BAC) {
+if (gameName !== GamesNamesEnum.RO) {
     console.error(`Game name is incorrect: ${gameName}. Please specify correct game to run Baccarat sanity tests!!!`);
     process.exit(1);  // Exit the process with a non-zero code to indicate failure
 }
@@ -45,8 +46,8 @@ const EXPECTED_PLAYER_BALANCE = 10000;
 
 // run tests for each game
 describe('SANITY: Baccarat specific cases', async () => {
-
-    const baccaratPage = new BaccaratPage();
+    // create a new instance of the game page object
+    const roulettePage = new RoulettePage(gameName);
 
     // original object sessionData with values
     let sessionData: Data;
@@ -109,7 +110,7 @@ describe('SANITY: Baccarat specific cases', async () => {
 
 
 
-    it.only(`SANITY_2_1 ${gameName} : Go to Lobby from Baccarat (liveGames link)`, async function () {
+    it.only(`SANITY_2_1 ${gameName} : Go to Lobby from Roulette (liveGames link)`, async function () {
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
         console.info('<<<<<<<<<<<< STARTING TEST EXECUTION: ', this?.test?.title, '>>>>>>>>>>>');
         console.info('-----------------------------------------------------------------------------------------------------------------------------');
@@ -122,10 +123,10 @@ describe('SANITY: Baccarat specific cases', async () => {
             const lobbyBtn = 'span=Lobby';
 
                
-
+// !roulettePage.chipset.
 
             // await allureReporter.step('Open game by direct link', async () => {
-                await baccaratPage.openByDirectLink(sessionData, openModeType.gameDirectLink);         // check that corrrect balance when tests starts
+                await roulettePage.openByDirectLink(sessionData);         // check that corrrect balance when tests starts
             // Wait for the logo to be displayed
 
             
@@ -166,34 +167,5 @@ describe('SANITY: Baccarat specific cases', async () => {
         }
     });
 
-    it(`SANITY_2_2 ${gameName} : Go to Lobby from Baccarat (through lobby)`, async function () {
 
-        const menuBtn = 'div[type="button"][aria-haspopup="dialog"]';
-        const lobbyBtn = 'span=Lobby';
-
-
-        await baccaratPage.openByDirectLink(sessionData, openModeType.lobbyDirectLink);       // check that corrrect balance when tests starts
-
-
-        
-        if (browser.isMobile) {
-            await $(menuBtn).waitForDisplayed({
-                timeout: 30000, // Wait up to x seconds
-                timeoutMsg: 'Logo image was not displayed within 30 seconds', // Custom error message
-            });
-            await $(menuBtn).click();
-        }
-        else {
-            await $(lobbyBtn).waitForDisplayed({
-                timeout: 30000, // Wait up to x seconds
-                timeoutMsg: 'Logo image was not displayed within 30 seconds', // Custom error message
-            });
-        }
-
-        // go to Lobby
-        await $(lobbyBtn).click();
-
-        console.log('asdf')
-
-    });
 });
