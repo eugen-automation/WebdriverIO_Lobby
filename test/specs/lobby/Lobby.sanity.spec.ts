@@ -122,7 +122,7 @@ describe('SANITY: Lobby test suite', async () => {
 
             await LoginPage.open(sessionData.urls.lobbyUrl);
 
-            await LoginPage.login('wrong_username', '');
+            await LoginPage.performLogin('wrong_username', '');
 
             await allureReporter.step('Check for error message to be displayed', async () => {
                 assert.ok(await LoginPage.errorMessage.waitForDisplayed({ timeout: 30000 }), 'Error message is not displayed!!!');
@@ -141,7 +141,7 @@ describe('SANITY: Lobby test suite', async () => {
         try {
            
             await LoginPage.open(sessionData.urls.lobbyUrl);
-            await LoginPage.login(sessionData.player.name, sessionData.player.password);
+            await LoginPage.performLogin(sessionData.player.name, sessionData.player.password);
 
             await allureReporter.step(`Check for successful login`, async () => {
                 // Check an element to exactly match with baseline

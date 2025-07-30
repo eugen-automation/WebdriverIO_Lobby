@@ -10,8 +10,10 @@ class LoginPage {
     get errorMessage() { return $(LobbyLoginPageLocators.errorMessage) } // Adjusted to use the correct selector for the error message
 
 
-    async login(username: string, password: string) {
+    async performLogin(username: string, password: string) {
         await allureReporter.step('Login with username and password', async () => {
+            // Wait for the login text to be displayed
+            await this.loginText.waitForDisplayed({timeout: 30000, timeoutMsg: 'Login text not displayed'});
             await this.inputUsername.setValue(username);
             await this.inputPassword.setValue(password);
             await this.btnLogin.click();
